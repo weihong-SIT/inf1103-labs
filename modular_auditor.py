@@ -1,3 +1,5 @@
+inventory = 0
+failedattempt = 0
 def get_valid_input():
     inventory = 0
     failedattempt = 0
@@ -12,6 +14,18 @@ def get_valid_input():
             print("invalid data, please enter again.")
             failedattempt = failedattempt + 1
     return inventory, failedattempt
-inventory = get_valid_input()
-print("inventory", inventory)
+
+def general_report(total_units, failedattempt):
+    print("Inventory: ", total_units)
+    print("failed attempts", failedattempt)
     
+def process_delivery(current_total,new_value):
+    return current_total + new_value
+
+def calculate_tax(amount):
+    return amount * 0.10
+
+inventory, failedattempt = get_valid_input()
+general_report(inventory, failedattempt)
+amount = process_delivery(inventory, 10)
+print("tax amount:", calculate_tax(amount))
