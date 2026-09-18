@@ -1,5 +1,4 @@
-inventory = 0
-failedattempt = 0
+
 def get_valid_input():
     inventory = 0
     failedattempt = 0
@@ -17,7 +16,7 @@ def get_valid_input():
 
 def general_report(total_units, failedattempt):
     print("Inventory: ", total_units)
-    print("failed attempts", failedattempt)
+    print("failed attempts: ", failedattempt)
     
 def process_delivery(current_total,new_value):
     return current_total + new_value
@@ -28,4 +27,6 @@ def calculate_tax(amount):
 inventory, failedattempt = get_valid_input()
 general_report(inventory, failedattempt)
 amount = process_delivery(inventory, 10)
+tprice = amount + calculate_tax(amount)
 print("tax amount:", calculate_tax(amount))
+print("total price:$" , tprice)
