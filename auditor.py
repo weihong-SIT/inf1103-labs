@@ -23,6 +23,6 @@ if inventory <= 500:
 else:
     excess = inventory - 500
     inventory = 500
-    print("inventory", inventory)
+    print("inventory: ", inventory)
     print("excess: ", excess)
 print("failed attempt: ", failedattempt)
