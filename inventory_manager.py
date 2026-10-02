@@ -1,8 +1,5 @@
 import json
 
-# ----------------------------------------
-# Load inventory from JSON file
-# ----------------------------------------
 def load_inventory():
 
     try:
@@ -20,10 +17,6 @@ def load_inventory():
 
         return []
 
-
-# ----------------------------------------
-# Save inventory to JSON file
-# ----------------------------------------
 def save_inventory(inventory):
 
     with open("inventory.json", "w") as file:
@@ -31,9 +24,6 @@ def save_inventory(inventory):
 
     print("Inventory saved successfully.")
 
-# ----------------------------------------
-# Display all products
-# ----------------------------------------
 def display_all(inventory):
     print("\nCurrent Inventory")
     print("---------------------------------------------")
@@ -52,9 +42,6 @@ def display_all(inventory):
     print("---------------------------------------------")
 
 
-# ----------------------------------------
-# Add a new product
-# ----------------------------------------
 def add_product(inventory):
     print("\nAdd New Product")
 
@@ -75,9 +62,6 @@ def add_product(inventory):
     print("\nProduct added successfully!")
 
 
-# ----------------------------------------
-# Update product stock
-# ----------------------------------------
 def update_stock(inventory):
     print("\nUpdate Stock")
 
@@ -97,9 +81,6 @@ def update_stock(inventory):
     print("Product not found.")
 
 
-# ----------------------------------------
-# Search for a product
-# ----------------------------------------
 def search_product(inventory):
     print("\nSearch Product")
 
@@ -117,11 +98,6 @@ def search_product(inventory):
             return
 
     print("Product not found.")
-
-
-# ----------------------------------------
-# Main program
-# ----------------------------------------
 
 print("==========================================")
 print("INVENTORY MANAGEMENT SYSTEM")
