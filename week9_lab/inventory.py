@@ -33,7 +33,7 @@ class Inventory:
                 return product
 
         return None
-     def display_all(self):
+    def display_all(self):
 
         if not self.__products:
             print("Inventory is empty.")
@@ -57,7 +57,7 @@ class Inventory:
         product.update_stock(quantity)
 
         return True
-     def save_inventory(self):
+    def save_inventory(self):
 
         try:
             self.__filename.parent.mkdir(
