@@ -29,3 +29,12 @@ class PhysicalProduct(Product, CanBeShipped):
 
     def get_type(self):
         return "physical"
+    
+    def search_product(self, product_id):
+
+        for product in self.__products:
+
+            if product.product_id.lower() == str(product_id).strip().lower():
+                return product
+
+        return None
