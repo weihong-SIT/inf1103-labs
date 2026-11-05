@@ -1,3 +1,4 @@
+
 from product import Product
 from can_be_shipped import CanBeShipped
 
@@ -15,11 +16,13 @@ class PhysicalProduct(Product, CanBeShipped):
     @property
     def weight(self):
         return self.__weight
-    
+
+    # Override parent method
     def display_information(self):
         super().display_information()
-        print(f"Download size: {self.__download_size:.2f} MB")
+        print(f"Weight: {self.__weight:.2f} kg")
 
+    # Implement abstract method
     def get_fulfilment_info(self):
         return "This product requires physical shipping."
 
@@ -29,12 +32,9 @@ class PhysicalProduct(Product, CanBeShipped):
 
     def get_type(self):
         return "physical"
-    
-    def search_product(self, product_id):
 
-        for product in self.__products:
-
-            if product.product_id.lower() == str(product_id).strip().lower():
-                return product
-
-        return None
+    # Add weight when converting to dictionary
+    def to_dict(self):
+        data = super().to_dict()
+        data["weight"] = self.__weight
+        return data
