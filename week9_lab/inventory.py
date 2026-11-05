@@ -24,3 +24,13 @@ class Inventory:
             raise ValueError("Product ID already exists")
 
         self.__products.append(product)
+
+    def search_product(self, product_id):
+
+        for product in self.__products:
+
+            if product.product_id.lower() == str(product_id).strip().lower():
+                return product
+
+        return None
+    
