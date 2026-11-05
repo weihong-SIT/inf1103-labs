@@ -1,0 +1,14 @@
+[
+    {
+        "product_id": "1003",
+        "name": "phone",
+        "price": 200.0,
+        "stock": 20
+    },
+    {
+        "product_id": "1004",
+        "name": "ipad",
+        "price": 500.0,
+        "stock": 50
+    }
+]

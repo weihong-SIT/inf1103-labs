@@ -31,3 +31,4 @@ def menu():
     print("4. Search for a product")
     print("5. Save inventory")
     print("6. Exit")
+

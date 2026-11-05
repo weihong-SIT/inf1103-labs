@@ -1,0 +1,125 @@
+commit 2db29ac2f9c661dd36837eaaef133696c710a327
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 00:39:46 2026 +0800
+
+    creation of inventory
+
+commit 44f07c36be098cdad187aa1f4430d21baeae7cf6
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 00:29:54 2026 +0800
+
+    creation of physical_product class
+
+commit 59e19e70d25f233fb628ca5d2419c48e3ceae758
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 00:28:02 2026 +0800
+
+    class for shipping cost
+
+commit cab0272bfceedfc9bf9d70fc8ecccf2bf2221e38
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 00:23:43 2026 +0800
+
+    product class with abstract class
+
+commit 1a92a5f5786addde3516ffc47ad6ecc4a0b7ef9f
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Nov 6 00:02:49 2026 +0800
+
+    menu creation
+
+commit cbdea26dd6a9ffe1813383a76955fa37b38f33dc
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Thu Nov 5 22:28:22 2026 +0800
+
+    trial post
+
+commit 74d1a1f68daf3d6229db3b9cfadb53199ce3b317
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Thu Nov 5 22:21:26 2026 +0800
+
+    added new folder
+
+commit 86ae79bb90b30e8006e0022b050b381cfac442c4
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 00:26:33 2026 +0800
+
+    oop management system
+
+commit 61e1ea9f2c00824d46bdde3ba85c13adf1d9e4dd
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 00:21:57 2026 +0800
+
+    inventory class
+
+commit dabe757563bcfc045d4f4b715e23c3e6a178a9f4
+Author: weihong-SIT <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Oct 30 00:19:07 2026 +0800
+
+    Product class
+
+commit 2b8e9fddff60047fc20cd41e92c0d1860b804eee
+Author: Tan Wei Hong <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 11:36:42 2026 +0800
+
+    inventory_post3
+
+commit f27a5cdc11bdf8461992f706c483faac9e4cb53a
+Author: Tan Wei Hong <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 11:22:46 2026 +0800
+
+    inventory_post2
+
+commit e31ca7504fab7dbede58b6b2fbcbdb80aea0e581
+Author: Tan Wei Hong <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 11:13:14 2026 +0800
+
+    inventorymanager_post
+
+commit 665f38402ad36af2bdcc988bb5f4512a0a657f76
+Author: Tan Wei Hong <2602290@sit.singaporetech.edu.sg>
+Date:   Wed Sep 30 15:16:02 2026 +0800
+
+    persistent_post
+
+commit 49bde5fe5cf34f89325f8b955bb5968aafc7cc03
+Author: Tan Wei Hong <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 11:17:18 2026 +0800
+
+    modular_auditp3
+
+commit 4ea828c67fc15e118a5537f2215897845ad69a5d
+Author: Tan Wei Hong <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 02:21:42 2026 +0800
+
+    modular_audit2
+
+commit 3be43e60aee7aa8bf36cb6340e5506a95efdbd73
+Author: Tan Wei Hong <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Sep 18 01:45:12 2026 +0800
+
+    ModularauditP1
+
+commit 61e2da821dad3b9a03406eedb9e29b55a434b40e
+Author: Tan Wei Hong <2602290@sit.singaporetech.edu.sg>
+Date:   Fri Sep 11 11:24:24 2026 +0800
+
+    auditor first post
+
+commit 88cc0f5ca2127099a036a91ca9e2efed697699dd
+Author: Tan Wei Hong <weihong7811@gmail.com>
+Date:   Fri Sep 4 11:03:59 2026 +0800
+
+    First Post
+
+commit ca0411d00f3f4129e43bb8ba4e3dd0b4a1271fbd
+Author: Tan Wei Hong <weihong7811@gmail.com>
+Date:   Fri Sep 4 10:54:45 2026 +0800
+
+    second post
+
+commit 80040b417ded3c83647dbc99c7ae792e6e63d254
+Author: Tan Wei Hong <weihong7811@gmail.com>
+Date:   Fri Sep 4 10:39:14 2026 +0800
+
+    First Post
