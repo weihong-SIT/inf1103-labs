@@ -1,0 +1,18 @@
+[
+    {
+        "type": "physical",
+        "product_id": "1003",
+        "name": "guitar",
+        "price": 200.0,
+        "stock": 100,
+        "weight": 5.0
+    },
+    {
+        "type": "digital",
+        "product_id": "2004",
+        "name": "game",
+        "price": 50.0,
+        "stock": 200,
+        "download_size": 50.0
+    }
+]
