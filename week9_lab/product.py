@@ -1,36 +1,50 @@
 
 from abc import ABC, abstractmethod
+from supplier import Supplier
 
 
 class Product(ABC):
 
-    def __init__(self, product_id, name, price, stock):
+    def __init__(
+        self,
+        product_id: str,
+        name: str,
+        price: float,
+        stock: int,
+        supplier: Supplier
+    ) -> None:
+
         self.__product_id = str(product_id)
         self.__name = str(name)
         self.__price = float(price)
         self.__stock = int(stock)
+        self.__supplier = supplier
 
         if self.__price < 0 or self.__stock < 0:
             raise ValueError("Price and stock cannot be negative")
 
-    # Properties for accessing private attributes
     @property
-    def product_id(self):
+    def product_id(self) -> str:
         return self.__product_id
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.__name
 
     @property
-    def price(self):
+    def price(self) -> float:
         return self.__price
 
     @property
-    def stock(self):
+    def stock(self) -> int:
         return self.__stock
 
-    def update_stock(self, quantity):
+    @property
+    def supplier(self) -> Supplier:
+        return self.__supplier
+
+    def update_stock(self, quantity: int) -> None:
+
         quantity = int(quantity)
 
         if quantity < 0:
@@ -38,7 +52,7 @@ class Product(ABC):
 
         self.__stock = quantity
 
-    def display_information(self):
+    def display_information(self) -> None:
         print(
             f"ID: {self.__product_id} | "
             f"Name: {self.__name} | "
@@ -46,21 +60,28 @@ class Product(ABC):
             f"Stock: {self.__stock}"
         )
 
-    # Abstract methods
+    def display_supplier(self) -> None:
+        self.__supplier.display_information()
+
     @abstractmethod
-    def get_fulfilment_info(self):
+    def get_fulfilment_info(self) -> str:
         pass
 
     @abstractmethod
-    def get_type(self):
+    def get_type(self) -> str:
         pass
 
-    # Convert product information into a dictionary
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
             "type": self.get_type(),
             "product_id": self.__product_id,
             "name": self.__name,
             "price": self.__price,
-            "stock": self.__stock
+            "stock": self.__stock,
+            "supplier": {
+                "supplier_id": self.__supplier.supplier_id,
+                "name": self.__supplier.name,
+                "contact_email": self.__supplier.contact_email
+            }
         }
+
