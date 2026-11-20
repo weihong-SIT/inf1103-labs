@@ -4,8 +4,7 @@ from pathlib import Path
 
 from product import Product
 from supplier import Supplier
-from physical_product import PhysicalProduct
-from digital_product import DigitalProduct
+from product_factory import ProductFactory
 
 
 class Inventory:
@@ -142,30 +141,18 @@ class Inventory:
                     supplier_data["contact_email"]
                 )
 
-                if item["type"] == "physical":
+                # weight (physical) or download_size (digital)
+                extra = item.get("weight", item.get("download_size"))
 
-                    product = PhysicalProduct(
-                        item["product_id"],
-                        item["name"],
-                        item["price"],
-                        item["stock"],
-                        item["weight"],
-                        supplier
-                    )
-
-                elif item["type"] == "digital":
-
-                    product = DigitalProduct(
-                        item["product_id"],
-                        item["name"],
-                        item["price"],
-                        item["stock"],
-                        item["download_size"],
-                        supplier
-                    )
-
-                else:
-                    raise ValueError("Unknown product type")
+                product = ProductFactory.create(
+                    item["type"],
+                    item["product_id"],
+                    item["name"],
+                    item["price"],
+                    item["stock"],
+                    extra,
+                    supplier
+                )
 
                 if any(
                     p.product_id.lower() == product.product_id.lower()
