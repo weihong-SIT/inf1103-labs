@@ -1,11 +1,19 @@
 
 from inventory import Inventory
 from supplier import Supplier
-from physical_product import PhysicalProduct
-from digital_product import DigitalProduct
 from order import Order
 from product import Product
 from can_be_shipped import CanBeShipped
+from product_factory import ProductFactory
+from input_helper import get_positive_float
+from product_loader import load_products
+from discount_strategy import (
+    DiscountStrategy,
+    NoDiscount,
+    PercentageDiscount,
+    BulkDiscount,
+    StudentDiscount,
+)
 
 
 def text_input(prompt: str) -> str:
@@ -43,16 +51,35 @@ def show_product_details(product: Product) -> None:
     print(product.get_fulfilment_info())
 
 
+def ask_supplier() -> Supplier:
+
+    print("\nEnter supplier information")
+
+    return Supplier(
+        text_input("Supplier ID: "),
+        text_input("Supplier name: "),
+        text_input("Supplier email: ")
+    )
+
+
 def add_product(inventory: Inventory) -> None:
 
     print("\n1. Physical product")
     print("2. Digital product")
 
-    kind = input("Choose type: ").strip()
+    product_types = {"1": "physical", "2": "digital"}
+    extra_prompts = {
+        "physical": "Weight (kg): ",
+        "digital": "Download size (MB): "
+    }
 
-    if kind not in ("1", "2"):
+    choice = input("Choose type: ").strip()
+
+    if choice not in product_types:
         print("Invalid type.")
         return
+
+    product_type = product_types[choice]
 
     product_id = text_input("Product ID: ")
 
@@ -61,42 +88,21 @@ def add_product(inventory: Inventory) -> None:
         return
 
     name = text_input("Product name: ")
-    price = number("Price ($): ")
+    price = get_positive_float("Price ($): ")
     stock = number("Stock: ", int)
+    supplier = ask_supplier()
+    extra = number(extra_prompts[product_type])
 
-    print("\nEnter supplier information")
-
-    supplier = Supplier(
-        text_input("Supplier ID: "),
-        text_input("Supplier name: "),
-        text_input("Supplier email: ")
+    # The factory decides which concrete class to build.
+    product = ProductFactory.create(
+        product_type,
+        product_id,
+        name,
+        price,
+        stock,
+        extra,
+        supplier
     )
-
-    if kind == "1":
-
-        weight = number("Weight (kg): ")
-
-        product = PhysicalProduct(
-            product_id,
-            name,
-            price,
-            stock,
-            weight,
-            supplier
-        )
-
-    else:
-
-        download_size = number("Download size (MB): ")
-
-        product = DigitalProduct(
-            product_id,
-            name,
-            price,
-            stock,
-            download_size,
-            supplier
-        )
 
     inventory.add_product(product)
 
@@ -146,6 +152,43 @@ def update_stock(inventory: Inventory) -> None:
     print("Stock updated.")
 
 
+def choose_discount() -> DiscountStrategy:
+
+    print("\nDiscount options")
+    print("1. No discount")
+    print("2. Percentage discount")
+    print("3. Bulk discount")
+    print("4. Student discount (5%)")
+
+    while True:
+
+        choice = input("Choose discount (1-4): ").strip()
+
+        try:
+
+            if choice == "1":
+                return NoDiscount()
+
+            elif choice == "2":
+                return PercentageDiscount(
+                    get_positive_float("Percentage off (e.g. 10): ")
+                )
+
+            elif choice == "3":
+                threshold = get_positive_float("Order total threshold: ")
+                amount = get_positive_float("Amount off: ")
+                return BulkDiscount(threshold, amount)
+
+            elif choice == "4":
+                return StudentDiscount()
+
+            else:
+                print("Choose 1 to 4.")
+
+        except ValueError as error:
+            print("Error:", error)
+
+
 def create_order(inventory: Inventory) -> None:
 
     order = Order(text_input("Order ID: "))
@@ -167,14 +210,21 @@ def create_order(inventory: Inventory) -> None:
 
         quantity = number("Quantity: ", int)
 
-        if quantity <= 0:
-            print("Quantity must be greater than zero.")
-            continue
+        try:
+            order.add_order_line(product, quantity)
+            print("Product added to order.")
+        except ValueError as error:
+            print("Error:", error)
 
-        order.add_order_line(product, quantity)
-        print("Product added to order.")
-
+    order.set_discount(choose_discount())
     order.display_order()
+
+
+def import_products(inventory: Inventory) -> None:
+
+    path = input("CSV file path [products.csv]: ").strip() or "products.csv"
+    supplier = ask_supplier()
+    load_products(path, inventory, supplier)
 
 
 def menu() -> None:
@@ -187,7 +237,8 @@ def menu() -> None:
     print("5. Remove product from inventory")
     print("6. Create an order")
     print("7. Save inventory")
-    print("8. Exit")
+    print("8. Load products from CSV")
+    print("9. Exit")
 
 
 def main() -> None:
@@ -197,7 +248,7 @@ def main() -> None:
     while True:
 
         menu()
-        choice = input("Choice (1-8): ").strip()
+        choice = input("Choice (1-9): ").strip()
 
         try:
 
@@ -236,15 +287,21 @@ def main() -> None:
 
             elif choice == "8":
 
+                import_products(inventory)
+
+            elif choice == "9":
+
                 inventory.save_inventory()
                 print("Goodbye.")
                 break
 
             else:
 
-                print("Choose 1 to 8.")
+                print("Choose 1 to 9.")
 
         except ValueError as error:
             print("Error:", error)
+
+
 if __name__ == "__main__":
     main()
