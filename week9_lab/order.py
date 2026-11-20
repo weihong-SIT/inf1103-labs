@@ -1,13 +1,20 @@
-
 from product import Product
 from order_line import OrderLine
+from discount_strategy import DiscountStrategy, NoDiscount
 
 
 class Order:
 
-    def __init__(self, order_id: str) -> None:
+    def __init__(
+        self,
+        order_id: str,
+        discount: DiscountStrategy | None = None
+    ) -> None:
         self.__order_id = order_id
         self.__order_lines: list[OrderLine] = []
+        self.__discount: DiscountStrategy = (
+            discount if discount is not None else NoDiscount()
+        )
 
     @property
     def order_id(self) -> str:
@@ -16,6 +23,13 @@ class Order:
     @property
     def order_lines(self) -> list[OrderLine]:
         return self.__order_lines.copy()
+
+    @property
+    def discount(self) -> DiscountStrategy:
+        return self.__discount
+
+    def set_discount(self, discount: DiscountStrategy) -> None:
+        self.__discount = discount
 
     def add_order_line(
         self,
@@ -34,14 +48,12 @@ class Order:
         self.__order_lines.pop(index)
         return True
 
+    def calculate_subtotal(self) -> float:
+        return sum(line.calculate_subtotal() for line in self.__order_lines)
+
     def calculate_total(self) -> float:
-
-        total = 0.0
-
-        for order_line in self.__order_lines:
-            total += order_line.calculate_subtotal()
-
-        return total
+        # No if/elif here: the strategy decides how the discount works.
+        return self.__discount.apply(self.calculate_subtotal())
 
     def display_order(self) -> None:
 
@@ -54,4 +66,5 @@ class Order:
         for order_line in self.__order_lines:
             order_line.display_information()
 
+        print(f"Subtotal: ${self.calculate_subtotal():.2f}")
         print(f"Order Total: ${self.calculate_total():.2f}")
